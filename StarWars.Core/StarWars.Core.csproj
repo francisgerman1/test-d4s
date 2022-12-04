@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Adapter\Implementation\Adapter.cs~RF68834f.TMP" />
+    <None Remove="Adapter\Implementation\Adapter.cs~RFace867.TMP" />
+    <None Remove="Adapter\Implementation\Adapter.cs~RFc9bf27.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="RestSharp" Version="108.0.3" />
   </ItemGroup>
 

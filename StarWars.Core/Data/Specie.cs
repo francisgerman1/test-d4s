@@ -2,20 +2,36 @@
 {
     public class Specie
     {
-        public string name { get; set; }
-        public string classification { get; set; }
-        public string designation { get; set; }
-        public string average_height { get; set; }
-        public string skin_colors { get; set; }
-        public string hair_colors { get; set; }
-        public string eye_colors { get; set; }
-        public string average_lifespan { get; set; }
-        public string homeworld { get; set; }
-        public string language { get; set; }
-        public string[] people { get; set; }
-        public string[] films { get; set; }
-        public DateTime created { get; set; }
-        public DateTime edited { get; set; }
-        public string url { get; set; }
+        private IEnumerable<int> _people;
+        private IEnumerable<int> _films;
+        private int _homeworld;
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Classification { get; set; }
+        public string Designation { get; set; }
+        public string AverageHeight { get; set; }
+        public string SkinColors { get; set; }
+        public string HairColors { get; set; }
+        public string EyeColors { get; set; }
+        public string AverageLifespan { get; set; }
+        public Planet Homeworld
+        {
+            get => Repository.Planets.Single(p => p.Id == _homeworld);
+            set { _homeworld = value.Id; }
+        }
+        public string Language { get; set; }
+        public IEnumerable<People> People
+        {
+            get => Repository.People.Where(s => _people.Any(x => x == s.Id));
+            set { _people = value.Select(x => x.Id); }
+        }
+        public IEnumerable<Film> Films
+        {
+            get => Repository.Films.Where(s => _films.Any(x => x == s.Id));
+            set { _films = value.Select(x => x.Id); }
+        }
+        public DateTime Created { get; set; }
+        public DateTime Edited { get; set; }
     }
 }

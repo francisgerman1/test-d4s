@@ -2,19 +2,30 @@
 {
     public class Planet
     {
-        public string name { get; set; }
-        public string rotation_period { get; set; }
-        public string orbital_period { get; set; }
-        public string diameter { get; set; }
-        public string climate { get; set; }
-        public string gravity { get; set; }
-        public string terrain { get; set; }
-        public string surface_water { get; set; }
-        public string population { get; set; }
-        public string[] residents { get; set; }
-        public string[] films { get; set; }
-        public DateTime created { get; set; }
-        public DateTime edited { get; set; }
-        public string url { get; set; }
+        private IEnumerable<int> _films;
+        private IEnumerable<int> _residents;
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string RotationPeriod { get; set; }
+        public string OrbitalPeriod { get; set; }
+        public string Diameter { get; set; }
+        public string Climate { get; set; }
+        public string Gravity { get; set; }
+        public string Terrain { get; set; }
+        public string SurfaceWater { get; set; }
+        public string Population { get; set; }
+        public IEnumerable<People> Residents
+        {
+            get => Repository.People.Where(s => _residents.Any(x => x == s.Id));
+            set { _residents = value.Select(x => x.Id); }
+        }
+        public IEnumerable<Film> Films
+        {
+            get => Repository.Films.Where(s => _films.Any(x => x == s.Id));
+            set { _films = value.Select(x => x.Id); }
+        }
+        public DateTime Created { get; set; }
+        public DateTime Edited { get; set; }
     }
 }

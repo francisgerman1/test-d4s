@@ -1,4 +1,4 @@
-﻿namespace StarWars.Core.Data
+﻿namespace StarWars.Core.Api
 {
     public class Model<T>
     {

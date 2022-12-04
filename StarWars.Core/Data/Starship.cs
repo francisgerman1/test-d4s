@@ -2,23 +2,34 @@
 {
     public class Starship
     {
-        public string name { get; set; }
-        public string model { get; set; }
-        public string manufacturer { get; set; }
-        public string cost_in_credits { get; set; }
-        public string length { get; set; }
-        public string max_atmosphering_speed { get; set; }
-        public string crew { get; set; }
-        public string passengers { get; set; }
-        public string cargo_capacity { get; set; }
-        public string consumables { get; set; }
-        public string hyperdrive_rating { get; set; }
+        private IEnumerable<int> _pilots;
+        private IEnumerable<int> _films;
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Model { get; set; }
+        public string Manufacturer { get; set; }
+        public string CostInCredits { get; set; }
+        public string Length { get; set; }
+        public string MaxAtmospheringSpeed { get; set; }
+        public string Crew { get; set; }
+        public string Passengers { get; set; }
+        public string CargoCapacity { get; set; }
+        public string Consumables { get; set; }
+        public string HyperdriveRating { get; set; }
         public string MGLT { get; set; }
-        public string starship_class { get; set; }
-        public object[] pilots { get; set; }
-        public string[] films { get; set; }
-        public DateTime created { get; set; }
-        public DateTime edited { get; set; }
-        public string url { get; set; }
+        public string StarshipClass { get; set; }
+        public IEnumerable<People> Pilots
+        {
+            get => Repository.People.Where(s => _pilots.Any(x => x == s.Id));
+            set { _pilots = value.Select(x => x.Id); }
+        }
+        public IEnumerable<Film> Films
+        {
+            get => Repository.Films.Where(s => _films.Any(x => x == s.Id));
+            set { _films = value.Select(x => x.Id); }
+        }
+        public DateTime Created { get; set; }
+        public DateTime Edited { get; set; }
     }
 }
